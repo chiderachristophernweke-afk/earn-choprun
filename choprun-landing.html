@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chop Run — Ride & Earn on Campus, Uniabuja</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coral:#E05A2B;--coral-dark:#B84820;--coral-glow:#FF7043;
+  --ink:#0F0D0B;--ink2:#2A2320;--ink3:#4A3F35;
+  --cream:#FBF5EE;--cream2:#F0E6D8;--cream3:#E8D8C4;
+  --white:#FFFFFF;--green:#1DB87A;--green-bg:#E6F7F0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--ink);color:var(--cream);min-height:100vh;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;background:rgba(15,13,11,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.08em;color:var(--cream);line-height:1}
+.nav-logo span{color:var(--coral)}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:8px 14px;border-radius:100px;font-size:13px;font-weight:500;color:rgba(251,245,238,0.6);cursor:pointer;transition:all 0.2s;border:none;background:none;font-family:'Outfit',sans-serif}
+.nav-link:hover{color:var(--cream);background:rgba(255,255,255,0.06)}
+.nav-link.active{color:var(--coral);background:rgba(224,90,43,0.12)}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 24px 48px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 20%,rgba(224,90,43,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 20% 80%,rgba(224,90,43,0.08) 0%,transparent 50%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(224,90,43,0.15);border:1px solid rgba(224,90,43,0.3);color:var(--coral-glow);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;width:fit-content;animation:fadeUp 0.6s ease both}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--coral);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(224,90,43,0.4)}50%{opacity:0.7;box-shadow:0 0 0 6px rgba(224,90,43,0)}}
+
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,16vw,120px);line-height:0.9;letter-spacing:0.02em;color:var(--cream);margin-bottom:8px;animation:fadeUp 0.6s 0.1s ease both}
+.hero-h1 .coral{color:var(--coral);display:block}
+.hero-sub{font-size:clamp(15px,3.5vw,18px);font-weight:300;color:rgba(251,245,238,0.6);max-width:420px;line-height:1.6;margin-bottom:36px;animation:fadeUp 0.6s 0.2s ease both}
+.hero-sub strong{color:var(--cream);font-weight:500}
+
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both}
+.btn-primary{background:var(--coral);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em}
+.btn-primary:hover{background:var(--coral-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(224,90,43,0.35)}
+.btn-primary:active{transform:translateY(0)}
+.btn-ghost{background:rgba(255,255,255,0.06);color:var(--cream);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px 28px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+
+.hero-stat-row{display:flex;gap:24px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);animation:fadeUp 0.6s 0.4s ease both;flex-wrap:wrap}
+.hero-stat .num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--coral);letter-spacing:0.04em}
+.hero-stat .lbl{font-size:12px;color:rgba(251,245,238,0.4);text-transform:uppercase;letter-spacing:0.08em}
+
+/* ── SECTIONS ── */
+.section{padding:80px 24px;max-width:600px;margin:0 auto}
+.section-tag{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:12px}
+.section-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,64px);line-height:0.95;letter-spacing:0.02em;color:var(--cream);margin-bottom:20px}
+.section-body{font-size:15px;font-weight:300;color:rgba(251,245,238,0.6);line-height:1.7;margin-bottom:32px}
+
+/* ── BENEFIT CARDS ── */
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.benefit-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px;transition:border-color 0.2s}
+.benefit-card:hover{border-color:rgba(224,90,43,0.3)}
+.benefit-icon{font-size:24px;margin-bottom:10px}
+.benefit-title{font-size:14px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.benefit-desc{font-size:12px;color:rgba(251,245,238,0.45);line-height:1.5;font-weight:300}
+
+/* ── FORMS ── */
+.form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px 24px;margin-bottom:12px}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);margin-bottom:6px}
+.form-sub{font-size:13px;color:rgba(251,245,238,0.45);margin-bottom:24px;font-weight:300}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:rgba(251,245,238,0.5);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:13px 16px;font-family:'Outfit',sans-serif;font-size:15px;color:var(--cream);outline:none;transition:all 0.2s;-webkit-appearance:none;appearance:none}
+.field input::placeholder,.field textarea::placeholder{color:rgba(251,245,238,0.25)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--coral);background:rgba(224,90,43,0.06);box-shadow:0 0 0 3px rgba(224,90,43,0.1)}
+.field select option{background:var(--ink2);color:var(--cream)}
+.field textarea{resize:vertical;min-height:80px}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-opt{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
+.radio-opt:hover{border-color:rgba(224,90,43,0.3);background:rgba(224,90,43,0.05)}
+.radio-opt input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex-shrink:0}
+.radio-opt .ro-label{font-size:14px;font-weight:500;color:var(--cream)}
+.radio-opt .ro-sub{font-size:12px;color:rgba(251,245,238,0.4)}
+
+.btn-submit{width:100%;background:var(--coral);color:#fff;border:none;border-radius:12px;padding:16px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;margin-top:4px}
+.btn-submit:hover{background:var(--coral-dark);transform:translateY(-1px)}
+.btn-submit:active{transform:translateY(0)}
+.btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+/* ── EARNINGS CALCULATOR ── */
+.calc-box{background:rgba(224,90,43,0.08);border:1px solid rgba(224,90,43,0.2);border-radius:14px;padding:20px;margin:16px 0}
+.calc-title{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
+.calc-slider-wrap{margin-bottom:14px}
+.calc-slider-wrap label{display:flex;justify-content:space-between;font-size:13px;color:rgba(251,245,238,0.6);margin-bottom:6px}
+.calc-slider-wrap label span{color:var(--cream);font-weight:600}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:rgba(255,255,255,0.12);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--coral);cursor:pointer;box-shadow:0 0 0 3px rgba(224,90,43,0.2)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--coral);cursor:pointer;border:none}
+
+.earnings-display{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.earn-box{background:rgba(0,0,0,0.2);border-radius:10px;padding:14px;text-align:center}
+.earn-box.big{grid-column:1/-1;background:var(--coral);border-radius:12px;padding:18px}
+.earn-num{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);line-height:1}
+.earn-box.big .earn-num{font-size:40px}
+.earn-lbl{font-size:11px;color:rgba(251,245,238,0.5);text-transform:uppercase;letter-spacing:0.07em;margin-top:3px}
+.earn-box.big .earn-lbl{color:rgba(255,255,255,0.7)}
+
+/* ── SUCCESS STATE ── */
+.success-wrap{display:none;text-align:center;padding:16px 0}
+.success-icon{width:64px;height:64px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.04em;color:var(--cream);margin-bottom:8px}
+.success-sub{font-size:14px;color:rgba(251,245,238,0.5);line-height:1.6;font-weight:300}
+.success-badge{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:600;padding:6px 18px;border-radius:100px;margin-top:12px;letter-spacing:0.04em}
+
+/* ── DIVIDER ── */
+.section-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0}
+
+/* ── HOW IT WORKS ── */
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:20px;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:19px;top:46px;bottom:-16px;width:1px;background:linear-gradient(to bottom,rgba(224,90,43,0.3),transparent)}
+.step-num{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--coral);font-family:'Bebas Neue',sans-serif;font-size:20px;display:flex;align-items:center;justify-content:center;color:#fff;margin-top:2px;letter-spacing:0.04em}
+.step-body{padding-bottom:32px}
+.step-title{font-size:16px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.step-desc{font-size:14px;color:rgba(251,245,238,0.45);line-height:1.6;font-weight:300}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,0.06)}
+footer .logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.08em;color:var(--cream);margin-bottom:6px}
+footer .logo span{color:var(--coral)}
+footer p{font-size:12px;color:rgba(251,245,238,0.3);line-height:1.8}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink2);border:1px solid rgba(255,255,255,0.1);color:var(--cream);padding:12px 24px;border-radius:100px;font-size:14px;font-weight:500;z-index:999;transition:transform 0.3s ease;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Chop<span>Run</span></div>
+  <!-- Nav links removed as CTAs -->
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-tag"><div class="live-dot"></div> Now recruiting · Uniabuja</div>
+  <h1 class="hero-h1">Ride.<span class="coral">Earn Cash.</span></h1>
+  <p class="hero-sub">Got a bicycle and free time between lectures? <strong>Deliver food on campus</strong> and earn real money — no boss, no fixed hours, your schedule.</p>
+
+  <!-- Hero actions/CTAs removed -->
+
+  <div class="hero-stat-row">
+    <div class="hero-stat"><div class="num">₦350</div><div class="lbl">Per Delivery</div></div>
+    <div class="hero-stat"><div class="num">₦42k+</div><div class="lbl">Monthly (Part-Time)</div></div>
+    <div class="hero-stat"><div class="num">Your Hrs</div><div class="lbl">Your Schedule</div></div>
+    <div class="hero-stat"><div class="num">&lt;2 Days</div><div class="lbl">To Pay Back Kit</div></div>
+  </div>
+</section>
+
+<!-- How it works section removed -->
+
+
+<!-- ── WHY RIDE WITH US ── -->
+<div class="section">
+  <div class="section-tag">Why ride with Chop Run</div>
+  <h2 class="section-h">Not just a gig.<br>Built for students.</h2>
+
+  <div class="benefit-grid">
+    <div class="benefit-card"><div class="benefit-icon">💸</div><div class="benefit-title">Real money</div><div class="benefit-desc">₦250–₦350 per delivery. No cap on how many you do.</div></div>
+    <div class="benefit-card"><div class="benefit-icon">🕐</div><div class="benefit-title">Your schedule</div><div class="benefit-desc">Ride between lectures. Go offline during exams. You decide.</div></div>
+    <div class="benefit-card"><div class="benefit-icon">🚲</div><div class="benefit-title">Campus-only</div><div class="benefit-desc">Short distances, no traffic. Every delivery is within campus.</div></div>
+    <div class="benefit-card"><div class="benefit-icon">⚡</div><div class="benefit-title">Instant payouts</div><div class="benefit-desc">Earnings hit your bank account — no waiting for month-end.</div></div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── EARNINGS CALCULATOR ── -->
+<div class="section" id="earnings">
+  <div class="section-tag">Earnings calculator</div>
+  <h2 class="section-h">See what<br>you could make.</h2>
+  <p class="section-body">Drag the sliders to match your schedule. These are realistic numbers based on campus delivery distances.</p>
+
+  <div class="calc-box">
+    <div class="calc-title">💰 Your Earnings Calculator</div>
+
+    <div class="calc-slider-wrap">
+      <label>Deliveries per hour <span id="dph-val">3</span></label>
+      <input type="range" id="dph" min="1" max="6" value="3" oninput="updateCalc()">
+    </div>
+    <div class="calc-slider-wrap">
+      <label>Hours riding per day <span id="hpd-val">2</span></label>
+      <input type="range" id="hpd" min="1" max="6" value="2" oninput="updateCalc()">
+    </div>
+    <div class="calc-slider-wrap">
+      <label>Pay per delivery <span id="ppd-val">₦300</span></label>
+      <input type="range" id="ppd" min="250" max="350" step="50" value="300" oninput="updateCalc()">
+    </div>
+
+    <div class="earnings-display">
+      <div class="earn-box"><div class="earn-num" id="e-hour">₦900</div><div class="earn-lbl">Per Hour</div></div>
+      <div class="earn-box"><div class="earn-num" id="e-day">₦1,800</div><div class="earn-lbl">Per Day</div></div>
+      <div class="earn-box"><div class="earn-num" id="e-week">₦9,000</div><div class="earn-lbl">Per Week</div></div>
+      <div class="earn-box"><div class="earn-num" id="e-month">₦36,000</div><div class="earn-lbl">Per Month</div></div>
+      <div class="earn-box big"><div class="earn-num" id="e-year">₦432,000</div><div class="earn-lbl">Yearly earnings potential — part time</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── RIDER APPLICATION ── -->
+<div class="section" id="apply">
+  <div class="section-tag">Apply now</div>
+  <h2 class="section-h">Turn your<br>free time<br>into cash.</h2>
+  <p class="section-body">Takes 2 minutes. We'll reach out before launch to complete your onboarding.</p>
+
+  <div class="form-card">
+    <div class="form-title">Apply to Ride</div>
+    <div class="form-sub">Fill this in — we'll WhatsApp you within 48 hours.</div>
+
+    <div id="rider-form-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" id="r-name" placeholder="Your full name">
+        </div>
+        <div class="field">
+          <label>WhatsApp number</label>
+          <input type="tel" id="r-whatsapp" placeholder="0812 345 6789">
+        </div>
+      </div>
+
+      <!-- Dept and Matric removed -->
+
+      <div class="field">
+        <label>How many free hours do you have between classes daily?</label>
+        <select id="r-hours">
+          <option value="">Select one</option>
+          <option value="1">About 1 hour</option>
+          <option value="2">1–2 hours</option>
+          <option value="3">2–3 hours</option>
+          <option value="4">3–4 hours</option>
+          <option value="5">More than 4 hours</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>How do you get around campus quickly?</label>
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="transport" value="own-bike">
+            <div><div class="ro-label">🚲 I own a bicycle</div><div class="ro-sub">Best option — ready to ride immediately</div></div>
+          </label>
+          <!-- Rent bike removed -->
+          <label class="radio-opt">
+            <input type="radio" name="transport" value="on-foot">
+            <div><div class="ro-label">🚶 I move on foot</div><div class="ro-sub">Possible for nearby deliveries — campus is small</div></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Estimated deliveries you could complete per hour</label>
+        <select id="r-dph">
+          <option value="">Be honest — this helps us route orders well</option>
+          <option value="1-2">1–2 (I'm cautious / on foot)</option>
+          <option value="3">About 3 (bicycle, steady pace)</option>
+          <option value="4-5">4–5 (bicycle, I know the campus well)</option>
+          <option value="6+">6+ (fast, know every shortcut)</option>
+        </select>
+      </div>
+
+      <!-- Fields below campus knowledge removed -->
+
+      <!-- Security note removed -->
+
+      <button class="btn-submit" onclick="submitRider()">Submit Application →</button>
+      <p style="font-size:11px;color:rgba(251,245,238,0.3);text-align:center;margin-top:10px">We'll WhatsApp you within 48 hours to schedule your onboarding.</p>
+    </div>
+
+    <div class="success-wrap" id="rider-success">
+      <div class="success-icon">🚲</div>
+      <div class="success-title">Application Received!</div>
+      <div class="success-sub">We'll WhatsApp you within 48 hours.<br>Based on your hours, you could earn up to <strong id="rider-earn-preview" style="color:var(--coral-glow)">₦36,000/month</strong> part-time.</div>
+      <div class="success-badge">Rider Application #<span id="r-position">12</span></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="logo">Chop<span>Run</span></div>
+  <p>University of Abuja · Campus Delivery Riders<br>Ride. Earn. Done.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── WEBHOOK CONFIG ──
+// 🔴 REPLACE THIS with your actual n8n webhook URL
+const WEBHOOK_URL = 'https://YOUR-N8N-INSTANCE.app.n8n.cloud/webhook/choprun-rider';
+
+// ── NAV SCROLL ──
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ── EARNINGS CALC ──
+function fmt(n){return'₦'+Math.round(n).toLocaleString('en-NG')}
+function updateCalc(){
+  const dph=+document.getElementById('dph').value;
+  const hpd=+document.getElementById('hpd').value;
+  const ppd=+document.getElementById('ppd').value;
+  document.getElementById('dph-val').textContent=dph;
+  document.getElementById('hpd-val').textContent=hpd;
+  document.getElementById('ppd-val').textContent=fmt(ppd);
+  const hour=dph*ppd, day=hour*hpd, week=day*5, month=week*4;
+  document.getElementById('e-hour').textContent=fmt(hour);
+  document.getElementById('e-day').textContent=fmt(day);
+  document.getElementById('e-week').textContent=fmt(week);
+  document.getElementById('e-month').textContent=fmt(month);
+  document.getElementById('e-year').textContent=fmt(month*12);
+}
+
+// ── TOAST ──
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── RIDER SUBMIT ──
+let riderCount=11;
+async function submitRider(){
+  const name=document.getElementById('r-name').value.trim();
+  const wa=document.getElementById('r-whatsapp').value.trim();
+  const hours=document.getElementById('r-hours').value;
+  const formDph=document.getElementById('r-dph').value;
+  const transport=document.querySelector('input[name=transport]:checked');
+
+  // Validation
+  if(!name){showToast('Please enter your full name');return;}
+  if(!wa||wa.replace(/\D/g,'').length<10){showToast('Please enter a valid WhatsApp number');return;}
+  if(!hours){showToast('Please select your free hours');return;}
+  if(!transport){showToast('Please select how you get around campus');return;}
+  if(!formDph){showToast('Please estimate your deliveries per hour');return;}
+
+  riderCount++;
+  const dph=+document.getElementById('dph').value;
+  const hpd=+document.getElementById('hpd').value;
+  const ppd=+document.getElementById('ppd').value;
+  const monthEst=dph*ppd*hpd*5*4;
+
+  const payload = {
+    name: name,
+    whatsapp: wa,
+    freeHours: hours,
+    transport: transport.value,
+    deliveriesPerHour: formDph,
+    estimatedMonthly: monthEst,
+    timestamp: new Date().toISOString(),
+    source: 'choprun-rider-landing'
+  };
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(err) {
+    console.warn('Webhook error:', err);
+  }
+
+  document.getElementById('rider-earn-preview').textContent=fmt(monthEst)+'/month';
+  document.getElementById('r-position').textContent=riderCount;
+  document.getElementById('rider-form-fields').style.display='none';
+  document.getElementById('rider-success').style.display='block';
+}
+</script>
+</body>
+</html>
