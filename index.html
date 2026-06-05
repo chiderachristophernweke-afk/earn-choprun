@@ -301,7 +301,7 @@ footer p{font-size:12px;color:rgba(251,245,238,0.3);line-height:1.8}
       <div class="success-badge" style="margin-bottom:20px">Rider Application #<span id="r-position">12</span></div>
       
       <a id="wa-link" href="https://chat.whatsapp.com/GNsIQMWPDWg3N6S38wdMpN" class="btn-submit" style="display:block;text-decoration:none;background:#25D366;text-align:center">Join Rider WhatsApp Group →</a>
-      <p style="font-size:12px;color:rgba(251,245,238,0.4);margin-top:12px">Redirecting you in 3 seconds...</p>
+      <p style="font-size:12px;color:rgba(251,245,238,0.4);margin-top:12px">Redirecting you now...</p>
     </div>
   </div>
 </div>
@@ -402,10 +402,10 @@ async function submitRider(){
   document.getElementById('rider-form-fields').style.display='none';
   document.getElementById('rider-success').style.display='block';
 
-  // Redirect to WhatsApp group after 3 seconds
+  // Redirect to WhatsApp group after 1.5 seconds
   setTimeout(() => {
     window.location.href = WHATSAPP_GROUP_URL;
-  }, 3000);
+  }, 1500);
 }
 </script>
 </body>
