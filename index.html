@@ -80,11 +80,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:fl
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
 .radio-group{display:flex;flex-direction:column;gap:8px}
-.radio-opt{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
-.radio-opt:hover{border-color:rgba(224,90,43,0.3);background:rgba(224,90,43,0.05)}
-.radio-opt input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex-shrink:0}
-.radio-opt .ro-label{font-size:14px;font-weight:500;color:var(--cream)}
-.radio-opt .ro-sub{font-size:12px;color:rgba(251,245,238,0.4)}
+.radio-opt{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
+.radio-opt:hover{border-color:rgba(224,90,43,0.3);background:rgba(224,90,43,0.06);transform:translateY(-1px)}
+.radio-opt:has(input:checked){border-color:var(--coral);background:rgba(224,90,43,0.12);box-shadow:0 8px 24px rgba(224,90,43,0.15)}
+.radio-opt:has(input:checked) .ro-label{color:var(--coral-glow)}
+.radio-opt input[type=radio]{accent-color:var(--coral);width:18px;height:18px;flex-shrink:0;cursor:pointer}
+.radio-opt .ro-label{font-size:15px;font-weight:600;color:var(--cream);transition:color 0.2s}
+.radio-opt .ro-sub{font-size:12px;color:rgba(251,245,238,0.45);line-height:1.4}
+.radio-opt::after{content:'✓';position:absolute;top:14px;right:16px;font-size:14px;color:var(--coral);opacity:0;transform:scale(0.5);transition:all 0.2s}
+.radio-opt:has(input:checked)::after{opacity:1;transform:scale(1)}
 
 .btn-submit{width:100%;background:var(--coral);color:#fff;border:none;border-radius:12px;padding:16px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;margin-top:4px}
 .btn-submit:hover{background:var(--coral-dark);transform:translateY(-1px)}
@@ -261,13 +265,12 @@ footer p{font-size:12px;color:rgba(251,245,238,0.3);line-height:1.8}
         <label>How do you get around campus quickly?</label>
         <div class="radio-group">
           <label class="radio-opt">
-            <input type="radio" name="transport" value="own-bike">
-            <div><div class="ro-label">🚲 I own a bicycle</div><div class="ro-sub">Best option — ready to ride immediately</div></div>
+            <input type="radio" name="transport" value="wheels" checked>
+            <div><div class="ro-label">🚲 Bicycle, Skateboard, or other wheels</div><div class="ro-sub">Best option — ready to deliver fast immediately</div></div>
           </label>
-          <!-- Rent bike removed -->
           <label class="radio-opt">
             <input type="radio" name="transport" value="on-foot">
-            <div><div class="ro-label">🚶 I move on foot</div><div class="ro-sub">Possible for nearby deliveries — campus is small</div></div>
+            <div><div class="ro-label">🚶 I walk on foot</div><div class="ro-sub">Possible for nearby short-distance orders</div></div>
           </label>
         </div>
       </div>
