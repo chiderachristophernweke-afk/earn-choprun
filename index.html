@@ -298,7 +298,10 @@ footer p{font-size:12px;color:rgba(251,245,238,0.3);line-height:1.8}
       <div class="success-icon">🚲</div>
       <div class="success-title">Application Received!</div>
       <div class="success-sub">We'll WhatsApp you within 48 hours.<br>Based on your hours, you could earn up to <strong id="rider-earn-preview" style="color:var(--coral-glow)">₦36,000/month</strong> part-time.</div>
-      <div class="success-badge">Rider Application #<span id="r-position">12</span></div>
+      <div class="success-badge" style="margin-bottom:20px">Rider Application #<span id="r-position">12</span></div>
+      
+      <a id="wa-link" href="https://chat.whatsapp.com/GNsIQMWPDWg3N6S38wdMpN" class="btn-submit" style="display:block;text-decoration:none;background:#25D366;text-align:center">Join Rider WhatsApp Group →</a>
+      <p style="font-size:12px;color:rgba(251,245,238,0.4);margin-top:12px">Redirecting you in 3 seconds...</p>
     </div>
   </div>
 </div>
@@ -347,6 +350,7 @@ function showToast(msg){
 }
 
 // ── RIDER SUBMIT ──
+const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/GNsIQMWPDWg3N6S38wdMpN';
 let riderCount=11;
 async function submitRider(){
   const name=document.getElementById('r-name').value.trim();
@@ -361,6 +365,10 @@ async function submitRider(){
   if(!hours){showToast('Please select your free hours');return;}
   if(!transport){showToast('Please select how you get around campus');return;}
   if(!formDph){showToast('Please estimate your deliveries per hour');return;}
+
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
 
   riderCount++;
   const dph=+document.getElementById('dph').value;
@@ -393,6 +401,11 @@ async function submitRider(){
   document.getElementById('r-position').textContent=riderCount;
   document.getElementById('rider-form-fields').style.display='none';
   document.getElementById('rider-success').style.display='block';
+
+  // Redirect to WhatsApp group after 3 seconds
+  setTimeout(() => {
+    window.location.href = WHATSAPP_GROUP_URL;
+  }, 3000);
 }
 </script>
 </body>
